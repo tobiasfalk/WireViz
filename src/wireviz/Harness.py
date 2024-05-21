@@ -29,6 +29,7 @@ from wireviz.wv_bom import (
     component_table_entry,
     generate_bom,
     get_additional_component_table,
+    make_list,
     pn_info_string,
 )
 from wireviz.wv_colors import get_color_hex, translate_color
@@ -78,12 +79,41 @@ class Harness:
         self._bom = []  # Internal Cache for generated bom
         self.additional_bom_items = []
 
+    def join_tweak(self, node: Union[Connector, Cable]) -> None:
+        """Join node.tweak with self.tweak after replacing placeholders."""
+        if node.tweak:
+            ph = node.tweak.placeholder
+            if ph is None:
+                ph = self.tweak.placeholder
+            # Create function rph() to replace placeholder with node name.
+            rph = (lambda s: s.replace(ph, node.name)) if ph else lambda s: s
+            n_override = node.tweak.override or {}
+            s_override = self.tweak.override or {}
+            for id, n_dict in n_override.items():
+                id = rph(id)
+                s_dict = s_override.get(id, {})
+                for k, v in n_dict.items():
+                    k = rph(k)
+                    v = rph(v)
+                    if k in s_dict and v != s_dict[k]:
+                        ValueError(
+                            f"{node.name}.tweak.override.{id}.{k} conflicts with another"
+                        )
+                    s_dict[k] = v
+                s_override[id] = s_dict
+            self.tweak.override = s_override
+            self.tweak.append = make_list(self.tweak.append) + [
+                rph(v) for v in make_list(node.tweak.append)
+            ]
+
     def add_connector(self, name: str, *args, **kwargs) -> None:
         check_old(f"Connector '{name}'", OLD_CONNECTOR_ATTR, kwargs)
         self.connectors[name] = Connector(name, *args, **kwargs)
+        self.join_tweak(self.connectors[name])
 
     def add_cable(self, name: str, *args, **kwargs) -> None:
         self.cables[name] = Cable(name, *args, **kwargs)
+        self.join_tweak(self.cables[name])
 
     def add_mate_pin(self, from_name, from_pin, to_name, to_pin, arrow_type) -> None:
         self.mates.append(MatePin(from_name, from_pin, to_name, to_pin, arrow_type))
