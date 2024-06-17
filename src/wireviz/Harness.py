@@ -281,7 +281,7 @@ class Harness:
                             shColor = shortComp.color
                             
                         if pinindex+1 in shortPins:
-                            pinhtml.append(f'    <td  port="p{pinindex+1}J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="{wv_colors.translate_color(shColor, "HEX")}">&#11044;</FONT></td>')
+                            pinhtml.append(f'    <td  port="p{pinindex+1}J"><FONT COLOR="{wv_colors.translate_color(shColor, "HEX")}">&#11044;</FONT></td>')
                         else:
                             pinhtml.append(f'    <td></td>')
                         

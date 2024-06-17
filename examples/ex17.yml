@@ -1,0 +1,22 @@
+connectors: # This is based on ex1 and adds some Shorts to the connectors
+  X1: # An example of Shorts with more information
+    pinlabels: [GND, VCC, RX, TX, GND, VCC, GND]
+  X2: # An example of a simple short definition
+    pinlabels: [GND, VCC, RX, TX, GND, VCC, GND]
+    shorts: # The definition is the same as above but there is no additional_components for more information
+      - SH1: [1, 5, 7]
+      - SH2: [2, 6]
+
+cables:
+  W1:
+    wirecount: 4
+    shield: true
+
+connections:
+  -
+    - X1: [1-4]
+    - W1: [1-4]
+    - X2: [1,2,4,3]
+  -
+    - X1: 1
+    - W1: s
