@@ -281,7 +281,7 @@ class Harness:
                             shColor = shortComp.color
                             
                         if pinindex+1 in shortPins:
-                            pinhtml.append(f'    <td  port="p{pinindex+1}J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="{wv_colors.translate_color(shColor, "HEX")}">&#11044;</FONT></td>')
+                            pinhtml.append(f'    <td  port="p{pinindex+1}J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="{wv_colors.translate_color(shColor, "HEX")}">\N{Black Large Circle}</FONT></td>')#&#11044; \xFF\xE2\xAC\xA4
                         else:
                             pinhtml.append(f'    <td></td>')
                         
@@ -312,7 +312,7 @@ class Harness:
                         dot.edge(
                         f"{connector.name}:p{shortPins[i - 1]}j:c",
                         f"{connector.name}:p{shortPins[i]}j:c",
-                        straight="straight"
+                        straight="straight",
                         )
                 
                 dot.attr("edge",  headclip="true", tailclip="true", style="bold")

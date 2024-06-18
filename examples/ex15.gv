@@ -34,14 +34,14 @@ graph {
    </tr>
    <tr>
     <td>GND</td>
-    <td  port="p1J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#FF66CC">&#11044;</FONT></td>
+    <td  port="p1J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#FF66CC">⬤</FONT></td>
     <td></td>
     <td port="p1r">1</td>
    </tr>
    <tr>
     <td>VCC</td>
     <td></td>
-    <td  port="p2J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#FF0000">&#11044;</FONT></td>
+    <td  port="p2J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#FF0000">⬤</FONT></td>
     <td port="p2r">2</td>
    </tr>
    <tr>
@@ -58,19 +58,19 @@ graph {
    </tr>
    <tr>
     <td>GND</td>
-    <td  port="p5J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#FF66CC">&#11044;</FONT></td>
+    <td  port="p5J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#FF66CC">⬤</FONT></td>
     <td></td>
     <td port="p5r">5</td>
    </tr>
    <tr>
     <td>VCC</td>
     <td></td>
-    <td  port="p6J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#FF0000">&#11044;</FONT></td>
+    <td  port="p6J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#FF0000">⬤</FONT></td>
     <td port="p6r">6</td>
    </tr>
    <tr>
     <td>GND</td>
-    <td  port="p7J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#FF66CC">&#11044;</FONT></td>
+    <td  port="p7J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#FF66CC">⬤</FONT></td>
     <td></td>
     <td port="p7r">7</td>
    </tr>
@@ -124,14 +124,14 @@ graph {
    <tr>
     <td port="p1l">1</td>
     <td>GND</td>
-    <td  port="p1J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#000000">&#11044;</FONT></td>
+    <td  port="p1J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#000000">⬤</FONT></td>
     <td></td>
    </tr>
    <tr>
     <td port="p2l">2</td>
     <td>VCC</td>
     <td></td>
-    <td  port="p2J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#000000">&#11044;</FONT></td>
+    <td  port="p2J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#000000">⬤</FONT></td>
    </tr>
    <tr>
     <td port="p3l">3</td>
@@ -148,19 +148,19 @@ graph {
    <tr>
     <td port="p5l">5</td>
     <td>GND</td>
-    <td  port="p5J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#000000">&#11044;</FONT></td>
+    <td  port="p5J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#000000">⬤</FONT></td>
     <td></td>
    </tr>
    <tr>
     <td port="p6l">6</td>
     <td>VCC</td>
     <td></td>
-    <td  port="p6J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#000000">&#11044;</FONT></td>
+    <td  port="p6J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#000000">⬤</FONT></td>
    </tr>
    <tr>
     <td port="p7l">7</td>
     <td>GND</td>
-    <td  port="p7J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#000000">&#11044;</FONT></td>
+    <td  port="p7J"><FONT FACE="Sans" POINT-SIZE="12.0" COLOR="#000000">⬤</FONT></td>
     <td></td>
    </tr>
   </table>
