@@ -27,7 +27,7 @@ connections:
 
 ![](tutorial01.png)
 
-[Source](tutorial01.yml) - [Bill of Materials](tutorial01.bom.tsv)
+[Source](tutorial01.yml) - [Bill of Materials](tutorial01.tsv)
 
 
 ## 02 - Adding parameters and colors
@@ -68,7 +68,7 @@ connections:
 
 ![](tutorial02.png)
 
-[Source](tutorial02.yml) - [Bill of Materials](tutorial02.bom.tsv)
+[Source](tutorial02.yml) - [Bill of Materials](tutorial02.tsv)
 
 
 ## 03 - Pinouts, shielding, templates (I)
@@ -110,7 +110,7 @@ connections:
 
 ![](tutorial03.png)
 
-[Source](tutorial03.yml) - [Bill of Materials](tutorial03.bom.tsv)
+[Source](tutorial03.yml) - [Bill of Materials](tutorial03.tsv)
 
 
 ## 04 - Templates (II), notes, American standards, daisy chaining (I)
@@ -163,7 +163,7 @@ connections:
 
 ![](tutorial04.png)
 
-[Source](tutorial04.yml) - [Bill of Materials](tutorial04.bom.tsv)
+[Source](tutorial04.yml) - [Bill of Materials](tutorial04.tsv)
 
 
 ## 05 - Ferrules, wire bundles, custom wire colors
@@ -209,7 +209,7 @@ connections:
 
 ![](tutorial05.png)
 
-[Source](tutorial05.yml) - [Bill of Materials](tutorial05.bom.tsv)
+[Source](tutorial05.yml) - [Bill of Materials](tutorial05.tsv)
 
 
 ## 06 - Custom ferrules
@@ -252,7 +252,7 @@ connections:
 
 ![](tutorial06.png)
 
-[Source](tutorial06.yml) - [Bill of Materials](tutorial06.bom.tsv)
+[Source](tutorial06.yml) - [Bill of Materials](tutorial06.tsv)
 
 
 ## 07 - Daisy chaining (II)
@@ -318,7 +318,7 @@ connections:
 
 ![](tutorial07.png)
 
-[Source](tutorial07.yml) - [Bill of Materials](tutorial07.bom.tsv)
+[Source](tutorial07.yml) - [Bill of Materials](tutorial07.tsv)
 
 
 ## 08 - Part numbers and additional components
@@ -345,12 +345,14 @@ connectors:
     spn: 1234
     # add a list of additional components to a part (shown in graph)
     additional_components:
-      - type: Crimp # short identifier used in graph
+      -
+        type: Crimp # short identifier used in graph
         subtype: Molex KK 254, 22-30 AWG # extra information added to type in bom
         qty_multiplier: populated # multipier for quantity (number of populated pins)
         manufacturer: Molex # set manufacter name
         mpn: 08500030 # set manufacturer part number
-      - type: Test
+      -
+        type: Test
         qty: 1
         pn: ABC
         manufacturer: Molex
@@ -379,30 +381,33 @@ cables:
     length: 1
     gauge: 0.25 mm2
     colors: [YE, BK, BK, RD]
-    manufacturer: [WiresCo, WiresCo, WiresCo, WiresCo] # set a manufacter per wire
-    mpn: [W1-YE, W1-BK, W1-BK, W1-RD]
-    supplier: [WireShack, WireShack, WireShack, WireShack]
-    spn: [1001, 1002, 1002, 1009]
-    pn: [WIRE1, WIRE2, WIRE2, WIRE3]
+    manufacturer: [WiresCo,WiresCo,WiresCo,WiresCo] # set a manufacter per wire
+    mpn: [W1-YE,W1-BK,W1-BK,W1-RD]
+    supplier: [WireShack,WireShack,WireShack,WireShack]
+    spn: [1001,1002,1002,1009]
+    pn: [WIRE1,WIRE2,WIRE2,WIRE3]
     # add a list of additional components to a part (shown in graph)
     additional_components:
-      - type: Sleve # short identifier used in graph
+      -
+        type: Sleeve # short identifier used in graph
         subtype: Braided nylon, black, 3mm # extra information added to type in bom
         qty_multiplier: length # multipier for quantity (length of cable)
-        unit: m
         pn: SLV-1
 
+
 connections:
-  - - X1: [1-4]
+  -
+    - X1: [1-4]
     - W1: [1-4]
     - X2: [1-4]
-  - - X1: [1-4]
+  -
+    - X1: [1-4]
     - W2: [1-4]
     - X3: [1-4]
 
 additional_bom_items:
   - # define an additional item to add to the bill of materials (does not appear in graph)
-    description: Label, pinout information
+    type: Label, pinout information
     qty: 2
     designators:
       - X2
@@ -414,6 +419,6 @@ additional_bom_items:
 
 ![](tutorial08.png)
 
-[Source](tutorial08.yml) - [Bill of Materials](tutorial08.bom.tsv)
+[Source](tutorial08.yml) - [Bill of Materials](tutorial08.tsv)
 
 
