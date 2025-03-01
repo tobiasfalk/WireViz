@@ -18,6 +18,20 @@ from wireviz.wv_utils import (
 mime_subtype_replacements = {"jpg": "jpeg", "tif": "tiff"}
 
 
+# TODO: Share cache and code between data_URI_base64() and embed_svg_images()
+def data_URI_base64(file: Union[str, Path], media: str = "image") -> str:
+    """Return Base64-encoded data URI of input file."""
+    file = Path(file)
+    b64 = base64.b64encode(file.read_bytes()).decode("utf-8")
+    uri = f"data:{media}/{get_mime_subtype(file)};base64, {b64}"
+    # print(f"data_URI_base64('{file}', '{media}') -> {len(uri)}-character URI")
+    if len(uri) > 65535:
+        print(
+            "data_URI_base64(): Warning: Browsers might have different URI length limitations"
+        )
+    return uri
+
+
 def embed_svg_images(svg_in: str, base_path: Union[str, Path] = Path.cwd()) -> str:
     images_b64 = {}  # cache of base64-encoded images
 
@@ -126,7 +140,7 @@ def generate_html_output(
         "<!-- %fontname% -->": options.fontname,
         "<!-- %bgcolor% -->": options.bgcolor.html,
         "<!-- %diagram% -->": svgdata,
-        # TODO: "<!-- %diagram_png_base64% -->": base64 of png file
+        "<!-- %diagram_png_base64% -->": data_URI_base64(f"{filename}.png"),
         "<!-- %filename% -->": str(filename),
         "<!-- %filename_stem% -->": Path(filename).stem,
         "<!-- %bom% -->": bom_html,
