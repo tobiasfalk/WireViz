@@ -31,7 +31,11 @@ epilog = (
 )
 
 
-@click.command(epilog=epilog, no_args_is_help=True)
+@click.command(
+    epilog=epilog,
+    no_args_is_help=True,
+    context_settings=dict(help_option_names=["-h", "--help"]),
+)
 @click.argument("file", nargs=-1)
 @click.option(
     "-f",

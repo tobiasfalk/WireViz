@@ -227,7 +227,7 @@ COLOR_CODES = {
         "BUVT", "VTBU", "OGVT", "VTOG", "GNVT", "VTGN", "BNVT", "VTBN", "SLVT", "VTSL",
     ],
     "TELALT": [  # 25x2: Tip and then ring of each pair
-        "WHBU", "BU", "WHOG", "OG", "WHGN", "GN", "WHBN", "BN", "WHSL", "SL",
+        "WHBU", "BU",   "WHOG", "OG",   "WHGN", "GN",   "WHBN", "BN",   "WHSL", "SL",
         "RDBU", "BURD", "RDOG", "OGRD", "RDGN", "GNRD", "RDBN", "BNRD", "RDSL", "SLRD",
         "BKBU", "BUBK", "BKOG", "OGBK", "BKGN", "GNBK", "BKBN", "BNBK", "BKSL", "SLBK",
         "YEBU", "BUYE", "YEOG", "OGYE", "YEGN", "GNYE", "YEBN", "BNYE", "YESL", "SLYE",

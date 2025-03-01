@@ -22,8 +22,8 @@ from wireviz.wv_colors import (
 )
 from wireviz.wv_utils import (
     NumberAndUnit,
-    awg_equiv,
     aspect_ratio,
+    awg_equiv,
     mm2_equiv,
     parse_number_and_unit,
     remove_links,
