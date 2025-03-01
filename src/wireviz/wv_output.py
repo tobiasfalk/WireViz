@@ -126,6 +126,9 @@ def generate_html_output(
         "<!-- %fontname% -->": options.fontname,
         "<!-- %bgcolor% -->": options.bgcolor.html,
         "<!-- %diagram% -->": svgdata,
+        # TODO: "<!-- %diagram_png_base64% -->": base64 of png file
+        "<!-- %filename% -->": str(filename),
+        "<!-- %filename_stem% -->": Path(filename).stem,
         "<!-- %bom% -->": bom_html,
         "<!-- %bom_reversed% -->": bom_html_reversed,
         "<!-- %sheet_current% -->": "1",  # TODO: handle multi-page documents
@@ -142,9 +145,9 @@ def generate_html_output(
                     if isinstance(entry, Dict):
                         replacements[f"<!-- %{item}_{index+1}% -->"] = str(category)
                         for entry_key, entry_value in entry.items():
-                            replacements[
-                                f"<!-- %{item}_{index+1}_{entry_key}% -->"
-                            ] = html_line_breaks(str(entry_value))
+                            replacements[f"<!-- %{item}_{index+1}_{entry_key}% -->"] = (
+                                html_line_breaks(str(entry_value))
+                            )
 
         replacements['"sheetsize_default"'] = '"{}"'.format(
             metadata.get("template", {}).get("sheetsize", "")
