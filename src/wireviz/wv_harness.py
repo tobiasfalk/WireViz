@@ -40,7 +40,7 @@ from wireviz.wv_output import (
     embed_svg_images_file,
     generate_html_output,
 )
-from wireviz.wv_utils import bom2tsv, open_file_write
+from wireviz.wv_utils import OLD_CONNECTOR_ATTR, bom2tsv, check_old, open_file_write
 
 
 @dataclass
@@ -58,6 +58,7 @@ class Harness:
         self.additional_bom_items = []
 
     def add_connector(self, designator: str, *args, **kwargs) -> None:
+        check_old(f"Connector '{designator}'", OLD_CONNECTOR_ATTR, kwargs)
         conn = Connector(designator=designator, *args, **kwargs)
         self.connectors[designator] = conn
 
