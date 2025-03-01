@@ -3,7 +3,7 @@
 import base64
 import re
 from pathlib import Path
-from typing import Dict, List, Union
+from typing import Callable, Dict, List, Union
 
 import wireviz  # for doing wireviz.__file__
 from wireviz import APP_NAME, APP_URL, __version__
@@ -97,12 +97,12 @@ def generate_html_output(
 
     html = open_file_read(templatefile).read()
 
-    # embed SVG diagram
-    with open_file_read(f"{filename}.tmp.svg") as file:
-        svgdata = re.sub(
+    # embed SVG diagram (only if used)
+    def svgdata() -> str:
+        return re.sub(
             "^<[?]xml [^?>]*[?]>[^<]*<!DOCTYPE [^>]*>",
             "<!-- XML and DOCTYPE declarations from SVG file removed -->",
-            file.read(),
+            open_file_read(f"{filename}.tmp.svg").read(),
             1,
         )
 
@@ -139,8 +139,6 @@ def generate_html_output(
         "<!-- %generator% -->": f"{APP_NAME} {__version__} - {APP_URL}",
         "<!-- %fontname% -->": options.fontname,
         "<!-- %bgcolor% -->": options.bgcolor.html,
-        "<!-- %diagram% -->": svgdata,
-        "<!-- %diagram_png_base64% -->": data_URI_base64(f"{filename}.png"),
         "<!-- %filename% -->": str(filename),
         "<!-- %filename_stem% -->": Path(filename).stem,
         "<!-- %bom% -->": bom_html,
@@ -148,6 +146,16 @@ def generate_html_output(
         "<!-- %sheet_current% -->": "1",  # TODO: handle multi-page documents
         "<!-- %sheet_total% -->": "1",  # TODO: handle multi-page documents
     }
+
+    def replacement_if_used(key: str, func: Callable[[], str]) -> None:
+        """Append replacement only if used in html."""
+        if key in html:
+            replacements[key] = func()
+
+    replacement_if_used("<!-- %diagram% -->", svgdata)
+    replacement_if_used(
+        "<!-- %diagram_png_base64% -->", lambda: data_URI_base64(f"{filename}.png")
+    )
 
     # prepare metadata replacements
     if metadata:
