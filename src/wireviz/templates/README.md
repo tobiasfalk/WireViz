@@ -39,7 +39,7 @@ Note that there must be one single space between `--` and `%` at both ends.
 | `<!-- %sheet_current% -->` | `1` (multi-page documents not yet supported) |
 | `<!-- %sheet_total% -->`   | `1` (multi-page documents not yet supported) |
 | `<!-- %diagram% -->`       | Embedded SVG diagram as valid HTML |
-| `<!-- %diagram_png_base64% -->` | Embedded base64 encoded PNG diagram as URI |
+| `<!-- %diagram_png_b64% -->` | Embedded base64 encoded PNG diagram as URI |
 | `<!-- %{item}% -->`             | String or numeric value of `metadata.{item}` |
 | `<!-- %{item}_{i}% -->`         | Category number `{i}` within dict value of `metadata.{item}` |
 | `<!-- %{item}_{i}_{key}% -->`   | Value of `metadata.{item}.{category}.{key}` |
