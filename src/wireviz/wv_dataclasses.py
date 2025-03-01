@@ -450,7 +450,7 @@ class Connector(TopLevelGraphicalComponent):
         qty_multipliers_computed = {
             "PINCOUNT": self.pincount,
             "POPULATED": num_populated_pins,
-            "UNPOPULATED": self.pincount - num_populated_pins,
+            "UNPOPULATED": max(0, self.pincount - num_populated_pins),
             "CONNECTIONS": num_connections,
         }
         for subitem in self.additional_components:
