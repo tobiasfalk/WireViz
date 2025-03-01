@@ -114,7 +114,6 @@ def gv_additional_component_table(component):
 
     rows = []
     for subitem in component.additional_components:
-
         if subitem.explicit_qty:
             text_qty, unit_qty = subitem.qty_computed, "x"
             if subitem.amount_computed is not None:
