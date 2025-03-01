@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+from errno import EINVAL, ENAMETOOLONG
 from pathlib import Path
 from typing import Any, Dict, List, Tuple, Union
 
@@ -410,12 +411,20 @@ def parse(
 def _get_yaml_data_and_path(inp: Union[str, Path, Dict]) -> Tuple[Dict, Path]:
     # determine whether inp is a file path, a YAML string, or a Dict
     if not isinstance(inp, Dict):  # received a str or a Path
-        if isinstance(inp, Path) or (isinstance(inp, str) and not "\n" in inp):
+        try:
             yaml_path = Path(inp).expanduser().resolve(strict=True)
+            # if no FileNotFoundError exception happens, get file contents
             yaml_str = open_file_read(yaml_path).read()
-        else:
-            yaml_path = None
+        except (FileNotFoundError, OSError) as e:
+            # if inp is a long YAML string, Pathlib will raise OSError: [Errno 63]
+            # (in Windows, it seems OSError [errno.EINVAL] might be raised in some cases)
+            # when trying to expand and resolve it as a path.
+            # Catch this error, but raise any others
+            if type(e) is OSError and e.errno not in (EINVAL, ENAMETOOLONG):
+                raise e
+            # file does not exist; assume inp is a YAML string
             yaml_str = inp
+            yaml_path = None
         yaml_data = yaml.safe_load(yaml_str)
     else:
         # received a Dict, use as-is
