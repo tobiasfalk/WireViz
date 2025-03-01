@@ -2,7 +2,7 @@
 
 <!--
 The following text is taken from #118
-https://github.com/formatc1702/WireViz/pull/118
+https://github.com/wireviz/WireViz/pull/118
 
 TODO: write a better explaination -->
 
@@ -26,7 +26,7 @@ Possible group names:
   - `tutorial` to process`tutorial/{readme.md,tutorial*.*}`
   - `demos` to process`examples/demo*.*`
 
-  Affected filetypes: `.gv`, `.bom.tsv`, `.png`, `.svg`, `.html`
+  Affected filetypes: `.gv`, `.tsv`, `.png`, `.svg`, `.html`
 
 
 ## Usage hints

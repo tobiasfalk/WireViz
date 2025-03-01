@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import re
+from collections import namedtuple
 from pathlib import Path
-from typing import Dict, List
+from typing import List, Optional, Union
+
+NumberAndUnit = namedtuple("NumberAndUnit", "number unit")
 
 awg_equiv_table = {
     "0.09": "28",
@@ -70,9 +73,40 @@ def expand(yaml_data):
 
 
 def get_single_key_and_value(d: dict):
-    k = list(d.keys())[0]
-    v = d[k]
-    return (k, v)
+    # used for defining a line in a harness' connection set
+    # E.g. for the YAML input `- X1: 1`
+    # this function returns a tuple in the form ("X1", "1")
+    return next(iter(d.items()))
+
+
+def parse_number_and_unit(
+    inp: Optional[Union[NumberAndUnit, float, int, str]],
+    default_unit: Optional[str] = None,
+) -> Optional[NumberAndUnit]:
+    if inp is None:
+        return None
+    elif isinstance(inp, NumberAndUnit):
+        return inp
+    elif isinstance(inp, float) or isinstance(inp, int):
+        return NumberAndUnit(inp, default_unit)
+    elif isinstance(inp, str):
+        if " " in inp:
+            num_str, unit = inp.split(" ", 1)
+        else:
+            num_str, unit = inp, default_unit
+
+        try:
+            number = int(num_str)
+        except ValueError:  # maybe it is a float?
+            try:
+                number = float(num_str)
+            except ValueError:  # neither float nor int
+                raise Exception(
+                    f"{inp} is not a valid number and unit.\n"
+                    "It must be a number, or a number and unit separated by a space."
+                )
+
+        return NumberAndUnit(number, unit)
 
 
 def int2tuple(inp):
@@ -90,14 +124,18 @@ def flatten2d(inp):
     ]
 
 
-def tuplelist2tsv(inp, header=None):
+def bom2tsv(inp, header=None):
     output = ""
     if header is not None:
         inp.insert(0, header)
-    inp = flatten2d(inp)
     for row in inp:
+        row = [item if item is not None else "" for item in row]
         output = output + "\t".join(str(remove_links(item)) for item in row) + "\n"
     return output
+
+
+def html_line_breaks(inp):
+    return remove_links(inp).replace("\n", "<br />") if isinstance(inp, str) else inp
 
 
 def remove_links(inp):
@@ -113,16 +151,29 @@ def clean_whitespace(inp):
 
 
 def open_file_read(filename):
+    """Open utf-8 encoded text file for reading - remember closing it when finished"""
     # TODO: Intelligently determine encoding
     return open(filename, "r", encoding="UTF-8")
 
 
 def open_file_write(filename):
+    """Open utf-8 encoded text file for writing - remember closing it when finished"""
     return open(filename, "w", encoding="UTF-8")
 
 
 def open_file_append(filename):
+    """Open utf-8 encoded text file for appending - remember closing it when finished"""
     return open(filename, "a", encoding="UTF-8")
+
+
+def file_read_text(filename: str) -> str:
+    """Read utf-8 encoded text file, close it, and return the text"""
+    return Path(filename).read_text(encoding="utf-8")
+
+
+def file_write_text(filename: str, text: str) -> int:
+    """Write utf-8 encoded text file, close it, and return the number of characters written"""
+    return Path(filename).write_text(text, encoding="utf-8")
 
 
 def is_arrow(inp):
@@ -154,7 +205,7 @@ def aspect_ratio(image_src):
     return 1  # Assume 1:1 when unable to read actual image size
 
 
-def smart_file_resolve(filename: str, possible_paths: (str, List[str])) -> Path:
+def smart_file_resolve(filename: str, possible_paths: Union[str, List[str]]) -> Path:
     if not isinstance(possible_paths, List):
         possible_paths = [possible_paths]
     filename = Path(filename)
@@ -176,3 +227,17 @@ def smart_file_resolve(filename: str, possible_paths: (str, List[str])) -> Path:
                 f"{filename} was not found in any of the following locations: \n"
                 + "\n".join([str(x) for x in possible_paths])
             )
+
+
+OLD_CONNECTOR_ATTR = {
+    "pinout": "was renamed to 'pinlabels' in v0.2",
+    "pinnumbers": "was renamed to 'pins' in v0.2",
+    "autogenerate": "is replaced with new syntax in v0.4",
+}
+
+
+def check_old(node: str, old_attr: dict, args: dict) -> None:
+    """Raise exception for any outdated attributes in args."""
+    for attr, descr in old_attr.items():
+        if attr in args:
+            raise ValueError(f"'{attr}' in {node}: '{attr}' {descr}")

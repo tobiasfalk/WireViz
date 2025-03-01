@@ -19,25 +19,24 @@ jobs:
             python-version: "3.8"
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Setup Graphviz
-      uses: ts-graphviz/setup-graphviz@v2
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install .
-    - name: Create Examples
-      run: PYTHONPATH=$(pwd)/src/wireviz:$PYTHONPATH cd src/wireviz/ && python build_examples.py
-    - name: Upload examples, demos, and tutorials
-      uses: actions/upload-artifact@v4
-      with:
-        name: examples-and-tutorials-v${{ matrix.python-version }}
-        path: |
-          examples/
-          tutorial/
-        if-no-files-found: error
-        
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install .
+      - name: Create Examples
+        run: PYTHONPATH=$(pwd)/src/wireviz:$PYTHONPATH cd src/wireviz/tools/ && python build_examples.py
+      - name: Upload examples, demos, and tutorials
+        uses: actions/upload-artifact@v4
+        with:
+          name: examples-and-tutorials-v${{ matrix.python-version }}
+          path: |
+            examples/
+            tutorial/
+          if-no-files-found: error

@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="generator" content="<!-- %generator% -->">
   <title><!-- %title% --></title>
   <style>
     body {
-      font-family: <!-- %fontname% -->;
-      background-color: <!-- %bgcolor% -->;
+      font-family: < !-- %fontname% -->;
+      background-color: < !-- %bgcolor% -->;
     }
 
-    table, td, th, #frame {
-      border: 0.35mm solid black; /* line weight based on DIN 15 */
+    table,
+    td,
+    th,
+    #frame {
+      border: 0.35mm solid black;
+      /* line weight based on DIN 15 */
     }
 
     table {
@@ -22,7 +27,8 @@
       border-spacing: 0mm;
     }
 
-    td, th {
+    td,
+    th {
       border-top: 0;
       border-left: 0;
 
@@ -38,17 +44,21 @@
       position: relative;
     }
 
-    .A4, .sheetsize_default { /* portrait */
+    .A4,
+    .sheetsize_default {
+      /* portrait */
       width: 180mm;
       height: 277mm;
     }
 
-    .A3 { /* landscape */
+    .A3 {
+      /* landscape */
       width: 390mm;
       height: 277mm;
     }
 
-    .A2 { /* landscape */
+    .A2 {
+      /* landscape */
       width: 564mm;
       height: 400mm;
     }
@@ -65,7 +75,8 @@
       vertical-align: middle;
     }
 
-    #diagram svg, #diagram img {
+    #diagram svg,
+    #diagram img {
       max-width: 95%;
       max-height: 100%;
       position: relative;
@@ -84,27 +95,32 @@
       height: 38.25mm;
     }
 
-    #titleblock tr, #bom tr {
+    #titleblock tr,
+    #bom tr {
       height: 4.25mm;
     }
 
-    .A4 #bom { /* BOM on top of title block */
+    .A4 #bom {
+      /* BOM on top of title block */
       position: absolute;
       bottom: 38.25mm;
       right: 0;
     }
 
-    .A3 #bom, .A2 #bom { /* BOM to the left of title block */
+    .A3 #bom,
+    .A2 #bom {
+      /* BOM to the left of title block */
       position: absolute;
       bottom: 0mm;
       left: 0mm;
     }
 
     #bom table {
-      width:180mm;
+      width: 180mm;
     }
 
-    #bom th, td {
+    #bom th,
+    td {
       text-align: left;
     }
 
@@ -160,10 +176,8 @@
       width: 12.75mm;
       text-align: center;
     }
-
   </style>
   <style type="text/css" media="print">
-
     @page {
       size: auto;
       margin: 0;
@@ -174,12 +188,12 @@
       margin: 10mm;
       margin-left: 20mm;
     }
-
   </style>
 </head>
+
 <body>
   <div id="page">
-    <div id="frame" class="sheetsize_default">
+    <div id="frame" class="<!-- %template_sheetsize% -->">
 
       <div id="diagram">
 
@@ -283,4 +297,5 @@
     </div> <!-- /frame -->
   </div> <!-- /page -->
 </body>
+
 </html>
