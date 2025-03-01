@@ -31,7 +31,7 @@ BomCategory = IntEnum(  # to enforce ordering in BOM
     "BomEntry", "CONNECTOR CABLE WIRE ADDITIONAL_INSIDE ADDITIONAL_OUTSIDE"
 )
 QtyMultiplierConnector = Enum(
-    "QtyMultiplierConnector", "PINCOUNT POPULATED CONNECTIONS"
+    "QtyMultiplierConnector", "PINCOUNT POPULATED UNPOPULATED CONNECTIONS"
 )
 QtyMultiplierCable = Enum(
     "QtyMultiplierCable", "WIRECOUNT TERMINATION LENGTH TOTAL_LENGTH"
