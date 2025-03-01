@@ -9,9 +9,9 @@ import wireviz  # for doing wireviz.__file__
 from wireviz import APP_NAME, APP_URL, __version__
 from wireviz.wv_dataclasses import Metadata, Options
 from wireviz.wv_utils import (
+    file_read_text,
+    file_write_text,
     html_line_breaks,
-    open_file_read,
-    open_file_write,
     smart_file_resolve,
 )
 
@@ -95,14 +95,14 @@ def generate_html_output(
         # fall back to built-in simple template if no template was provided
         templatefile = Path(wireviz.__file__).parent / "templates/simple.html"
 
-    html = open_file_read(templatefile).read()
+    html = file_read_text(templatefile)
 
     # embed SVG diagram (only if used)
     def svgdata() -> str:
         return re.sub(
             "^<[?]xml [^?>]*[?]>[^<]*<!DOCTYPE [^>]*>",
             "<!-- XML and DOCTYPE declarations from SVG file removed -->",
-            open_file_read(f"{filename}.tmp.svg").read(),
+            file_read_text(f"{filename}.tmp.svg"),
             1,
         )
 
@@ -186,4 +186,4 @@ def generate_html_output(
     pattern = re.compile("|".join(replacements_escaped))
     html = pattern.sub(lambda match: replacements[match.group(0)], html)
 
-    open_file_write(f"{filename}.html").write(html)
+    file_write_text(f"{filename}.html", html)

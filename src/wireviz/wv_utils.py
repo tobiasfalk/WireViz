@@ -151,16 +151,29 @@ def clean_whitespace(inp):
 
 
 def open_file_read(filename):
+    """Open utf-8 encoded text file for reading - remember closing it when finished"""
     # TODO: Intelligently determine encoding
     return open(filename, "r", encoding="UTF-8")
 
 
 def open_file_write(filename):
+    """Open utf-8 encoded text file for writing - remember closing it when finished"""
     return open(filename, "w", encoding="UTF-8")
 
 
 def open_file_append(filename):
+    """Open utf-8 encoded text file for appending - remember closing it when finished"""
     return open(filename, "a", encoding="UTF-8")
+
+
+def file_read_text(filename: str) -> str:
+    """Read utf-8 encoded text file, close it, and return the text"""
+    return Path(filename).read_text(encoding="utf-8")
+
+
+def file_write_text(filename: str, text: str) -> int:
+    """Write utf-8 encoded text file, close it, and return the number of characters written"""
+    return Path(filename).write_text(text, encoding="utf-8")
 
 
 def is_arrow(inp):

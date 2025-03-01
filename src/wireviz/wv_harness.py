@@ -40,7 +40,7 @@ from wireviz.wv_output import (
     embed_svg_images_file,
     generate_html_output,
 )
-from wireviz.wv_utils import OLD_CONNECTOR_ATTR, bom2tsv, check_old, open_file_write
+from wireviz.wv_utils import OLD_CONNECTOR_ATTR, bom2tsv, check_old, file_write_text
 
 
 @dataclass
@@ -424,7 +424,8 @@ class Harness:
         # bomlist = [[]]
         if "tsv" in fmt:
             tsv = bom2tsv(bomlist)
-            open_file_write(f"{filename}.tsv").write(tsv)
+            file_write_text(f"{filename}.bom.tsv", tsv)
+
         if "csv" in fmt:
             # TODO: implement CSV output (preferrably using CSV library)
             print("CSV output is not yet supported")
