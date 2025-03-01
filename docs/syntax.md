@@ -499,7 +499,7 @@ The following colors are understood:
 - `GD` ![##ffcf80](https://via.placeholder.com/15/ffcf80/000000?text=+) (gold)
 
 <!-- color list generated with a helper script: -->
-<!-- https://gist.github.com/formatc1702/3c93fb4c5e392364899283f78672b952 -->
+<!-- https://gist.github.com/17o2/3c93fb4c5e392364899283f78672b952 -->
 
 It is also possible to specify colors as hexadecimal RGB values, e.g. `#112233` or `#FFFF00:#009900`.
 Remember quoting strings containing a `#` in the YAML file.
