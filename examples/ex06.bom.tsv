@@ -1,6 +1,6 @@
-Id	Description	Qty	Unit	Designators
-1	Connector, Molex KK 254, female, 4 pins	6		X1, X2, X3, X4, X5, X6
-2	Wire, 0.25 mm², PK	1.0	m	W1, W2, W3, W4, W5
-3	Wire, 0.25 mm², TQ	1.0	m	W1, W2, W3, W4, W5
-4	Wire, 0.25 mm², VT	1.0	m	W1, W2, W3, W4, W5
-5	Wire, 0.25 mm², YE	1.0	m	W1, W2, W3, W4, W5
+#	Qty	Unit	Description	Designators
+1	6		Connector, Molex KK 254, female, 4 pins	X1, X2, X3, X4, X5, X6
+2	5	m	Wire, 0.25 mm², PK	W1, W2, W3, W4, W5
+3	5	m	Wire, 0.25 mm², TQ	W1, W2, W3, W4, W5
+4	5	m	Wire, 0.25 mm², VT	W1, W2, W3, W4, W5
+5	5	m	Wire, 0.25 mm², YE	W1, W2, W3, W4, W5

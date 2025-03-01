@@ -1,4 +1,4 @@
-Id	Description	Qty	Unit	Designators
-1	Cable, 2 x 20 AWG	1	m	C1
-2	Connector, D-Sub, female, 9 pins	1		X2
-3	Connector, TE 776164-1, female, 35 pins	1		X1
+#	Qty	Unit	Description	Designators
+1	1		Connector, D-Sub, female, 9 pins	X2
+2	1		Connector, TE 776164-1, female, 35 pins	X1
+3	1	m	Cable, 2 x 20 AWG	C1

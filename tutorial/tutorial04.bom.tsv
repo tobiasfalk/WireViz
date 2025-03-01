@@ -1,4 +1,4 @@
-Id	Description	Qty	Unit	Designators
-1	Cable, 4 x 24 AWG	0.4	m	W1, W2
-2	Connector, Molex KK 254, female, 4 pins	2		X2, X3
-3	Connector, Molex KK 254, male, 4 pins	1		X1
+#	Qty	Unit	Description	Designators
+1	2		Connector, Molex KK 254, female, 4 pins	X2, X3
+2	1		Connector, Molex KK 254, male, 4 pins	X1
+3	2	m	Cable, 4 x 24 AWG	W1, W2
