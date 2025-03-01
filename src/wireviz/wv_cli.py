@@ -14,11 +14,11 @@ from wireviz import APP_NAME, __version__
 from wireviz.wv_utils import open_file_read
 
 format_codes = {
-    "c": "csv",
+    # "c": "csv",  # TODO: support CSV
     "g": "gv",
     "h": "html",
     "p": "png",
-    "P": "pdf",
+    # "P": "pdf",  # TODO: support PDF
     "s": "svg",
     "t": "tsv",
 }

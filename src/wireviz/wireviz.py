@@ -44,10 +44,8 @@ def parse(
         * "harness": the diagram as a Harness Python object
 
     Supported output formats:
-        * "csv":  the BOM, as a comma-separated text file
         * "gv":   the diagram, as a GraphViz source file
         * "html": the diagram and (depending on the template) the BOM, as a HTML file
-        * "png":  the diagram, as a PNG raster image
         * "pdf":  the diagram and (depending on the template) the BOM, as a PDF file
         * "svg":  the diagram, as a SVG vector image
         * "tsv":  the BOM, as a tab-separated text file
@@ -81,6 +79,7 @@ def parse(
             * SVG data
             * a Harness object
     """
+    # TODO: add CSV and PDF to docstring once they are supported
 
     if not output_formats and not return_types:
         raise Exception("No output formats or return types specified")
