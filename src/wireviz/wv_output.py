@@ -69,9 +69,9 @@ def embed_svg_images_file(
 ) -> None:
     filename_in = Path(filename_in).resolve()
     filename_out = filename_in.with_suffix(".b64.svg")
-    filename_out.write_text(
+    filename_out.write_text(  # TODO?: Verify xml encoding="utf-8" in SVG?
         embed_svg_images(filename_in.read_text(), filename_in.parent)
-    )
+    )  # TODO: Use encoding="utf-8" in both read_text() and write_text()
     if overwrite:
         filename_out.replace(filename_in)
 
@@ -95,11 +95,11 @@ def generate_html_output(
         # fall back to built-in simple template if no template was provided
         templatefile = Path(wireviz.__file__).parent / "templates/simple.html"
 
-    html = file_read_text(templatefile)
+    html = file_read_text(templatefile)  # TODO?: Warn if unexpected meta charset?
 
     # embed SVG diagram (only if used)
     def svgdata() -> str:
-        return re.sub(
+        return re.sub(  # TODO?: Verify xml encoding="utf-8" in SVG?
             "^<[?]xml [^?>]*[?]>[^<]*<!DOCTYPE [^>]*>",
             "<!-- XML and DOCTYPE declarations from SVG file removed -->",
             file_read_text(f"{filename}.tmp.svg"),

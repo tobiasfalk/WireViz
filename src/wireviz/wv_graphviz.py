@@ -551,7 +551,7 @@ def set_dot_basics(dot, options):
         bgcolor=options.bgcolor.html,
         nodesep="0.33",
         fontname=options.fontname,
-    )
+    )  # TODO: Add graph attribute: charset="utf-8",
     dot.attr(
         "node",
         shape="none",
