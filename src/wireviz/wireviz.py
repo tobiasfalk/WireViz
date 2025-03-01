@@ -21,6 +21,8 @@ from wireviz.wv_utils import (
     smart_file_resolve,
 )
 
+from . import APP_NAME
+
 
 def parse(
     inp: Union[Path, str, Dict],
@@ -118,9 +120,7 @@ def parse(
 
     # When title is not given, either deduce it from filename, or use default text.
     if "title" not in harness.metadata:
-        harness.metadata["title"] = (
-            Path(yaml_file).stem if yaml_file else "WireViz diagram and BOM"
-        )
+        harness.metadata["title"] = output_name or f"{APP_NAME} diagram and BOM"
 
     # add items
     # parse YAML input file ====================================================
