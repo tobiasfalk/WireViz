@@ -6,7 +6,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import List, Union
-from distutils.spawn import find_executable
+#from distutils.spawn import find_executable
 
 from graphviz import Graph
 
@@ -339,7 +339,7 @@ class Harness:
                              color=color,
                              straight="straight",
                              addPTS=".18",   # Size of the point at the end of the straight line/edge, it also enables the drawing of it
-                             colorPTS=color,
+                             colorPTS=color.replace("#FFFFFF:", ""),
                              headclip="false", tailclip="false")
 
         # determine if there are double- or triple-colored wires in the harness;
@@ -416,7 +416,7 @@ class Harness:
     
     def graphRender(self, type, filename, graph):
         # Chack if the needed commands are existing
-        if find_executable("dot") and find_executable("gvpr") and find_executable("neato"):
+        if shutil.which("dot") and shutil.which("gvpr") and shutil.which("neato"):
             # Set enviorments variable to path of this file
             os.environ['GVPRPATH'] = str(Path(__file__).parent)
             # Export the gv output to a temporay file
