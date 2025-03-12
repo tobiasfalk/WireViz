@@ -46,7 +46,7 @@ from wireviz.wv_output import (
     embed_svg_images_file,
     generate_html_output,
 )
-from wireviz.wv_utils import bom2tsv, open_file_write, getAddCompFromRef
+from wireviz.wv_utils import OLD_CONNECTOR_ATTR, bom2tsv, check_old, file_write_text, getAddCompFromRef
 
 @dataclass
 class Harness:
